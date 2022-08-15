@@ -1,0 +1,25 @@
+'use strict';
+
+
+import { projectAuth} from "../Firebase/config"
+import { ref } from "vue"
+
+const error = ref(null)
+
+const signout = async () => {
+    error.value = null
+    try {
+        await projectAuth.signOut()
+    } catch (err) {
+        console.log(err.message)
+        error.value = err.message
+    }
+}
+
+
+const useSignout = () => {
+    return { signout, error}
+
+}
+
+export default useSignout
